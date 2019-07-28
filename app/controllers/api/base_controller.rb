@@ -4,7 +4,7 @@ class Api::BaseController < ApplicationController
     before_action :authenticate_request
 
     def authenticate_request
-        if request.headers['X-GLOBALPOST-SYS'] == 'foo'
+        if request.headers['X-GLOBALPOST-SYS'] == ENV['GLOBALPOST_APP_KEY']
             return true
         else
             render json: {message: 'Not authorized!'}, status: :unauthorized
