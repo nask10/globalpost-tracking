@@ -19,6 +19,24 @@ module GlobalPost
             )
 
         end
+
+        def self.create_user(user)
+            Rails.logger.info "[API client] performing HTTP POST request..."
+            post(
+                '/api/users',
+                headers: {
+                    'X-GLOBALPOST-SYS' => ENV['GLOBALPOST_APP_KEY']
+                },
+                body: {
+                    user: {
+                        email: user.email,
+                        password: user.password,
+                        password_confirmation: user.password_confirmation 
+
+                    }
+                }
+            )
+        end
     
     end
     
