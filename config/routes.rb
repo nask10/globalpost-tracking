@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+    #require "admin_constraint"
+    require 'sidekiq/web'
+
+    #constraints lambda {|request| AuthConstraint.admin?(request) } do
+    mount Sidekiq::Web => '/admin/sidekiq'
+
+
   devise_for :users  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

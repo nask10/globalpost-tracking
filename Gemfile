@@ -39,6 +39,8 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'httparty'
 
+gem 'sidekiq'
+
 
 group :development, :test do
   gem 'sqlite3'

@@ -16,16 +16,6 @@ class TrackEvent < ApplicationRecord
     after_create :broadcast_update
 
     def broadcast_update
-        GlobalPost::HTTP.update_parcel_status(
-            parcel,
-            location,
-            description
-        )
-
-        GlobalPost::Notification::HTTP.create_notification(
-            parcel,
-            location,
-            description
-        )
+        BroadcastUpdateJob.perform_later(self.id)
     end
 end
