@@ -1,4 +1,4 @@
-class TrackEvent < ApplicationRecord
+class TrackEvent
 
     EVENTS_LIST = [
         'Package left origin city facility towards airport', # location: origin city
@@ -11,11 +11,20 @@ class TrackEvent < ApplicationRecord
         'Package has been delivered' # location: destination city
     ]
 
+    include Mongoid::Document
+    include Mongoid::Timestamps
+
+    field :parcel_id, type: String
+    field :location, type: String
+    field :description, type: String
+    field :created_at, type: DateTime
+    field :updated_at, type: DateTime
+
     belongs_to :parcel
 
     after_create :broadcast_update
 
     def broadcast_update
-        BroadcastUpdateJob.perform_later(self.id)
+        BroadcastUpdateJob.perform_later(self._id.to_s)
     end
 end

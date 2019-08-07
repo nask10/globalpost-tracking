@@ -4,13 +4,13 @@ class ParcelsController < ApplicationController
     end
 
     def show
-        @parcel = Parcel.find params[:id]
-        @origin_address = Address.find @parcel.origin_address_id
-        @destination_address = Address.find @parcel.destination_address_id
+        @parcel = Parcel.find_by id: params[:id]
+        @origin_address = Address.find_by id: @parcel.origin_address_id
+        @destination_address = Address.find_by id: @parcel.destination_address_id
     end
 
     def update_status
-        @parcel = Parcel.find params[:id]
+        @parcel = Parcel.find_by id: params[:id]
         if @parcel.update_track_history
             message = 'Track history updated'
         else

@@ -20,7 +20,7 @@ module GlobalPost
 
         end
 
-        def self.create_user(user)
+        def self.create_user(email, password)
             Rails.logger.info "[API client] performing HTTP POST request..."
             post(
                 '/api/users',
@@ -29,9 +29,9 @@ module GlobalPost
                 },
                 body: {
                     user: {
-                        email: user.email,
-                        password: user.password,
-                        password_confirmation: user.password_confirmation 
+                        email: email,
+                        password: password #,
+                        #password_confirmation: user.encrypted_password_confirmation 
 
                     }
                 }
