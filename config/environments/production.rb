@@ -89,7 +89,7 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
-  config.action_mailer.default_url_options = { :host => "herokuapp.com" }
+  config.action_mailer.default_url_options = { :host => "globalpost-tracking-mongodb.herokuapp.com" }
 
   # Setup the mailer config
   config.action_mailer.delivery_method = :smtp
