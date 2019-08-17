@@ -1,0 +1,5 @@
+<h1>Welcome to GlobalPost-Tracking - Employee Portal</h1>
+
+<% if user_signed_in? %>
+    <%= link_to('My dashboard', user_parcels_path(current_user)) %>
+<% end %>

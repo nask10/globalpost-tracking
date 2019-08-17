@@ -1,0 +1,89 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="col-md-12">
+        <h4 class="float-left">Parcel - <%= @parcel.tracking_code %></h4>
+    </li>
+  </ol>
+</nav>
+
+<div class="row">
+<div class="col-md-12">
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Receiver: <%= @parcel.receiver_name %></h5>
+    <hr>
+    <div class="row">Phone: <%= @parcel.receiver_phone %></div>
+    <div class="row">e-mail: <%= @parcel.receiver_email %></div>
+  </div>
+
+</div>
+</div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card" style="width: 34rem;">
+          <div class="card-body">
+            <h5 class="card-title">Origin Address</h5>
+            <hr>
+            <div>
+              <p><strong>Street:</strong>&nbsp;<%= @origin_address.street %></p>
+              <p><strong>External number:</strong>&nbsp;<%= @origin_address.ext_number %></p>
+              <p><strong>Appartment:</strong>&nbsp;<%= @origin_address.int_number %></p>
+              <p><strong>City:</strong>&nbsp;<%= @origin_address.city %></p>
+              <p><strong>Country:</strong>&nbsp;<%= @origin_address.country %></p>
+              <p><strong>ZIP code:</strong>&nbsp;<%= @origin_address.zip_code %></p>
+            </div>
+          </div>
+
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card" style="width: 34rem;">
+          <div class="card-body">
+            <h5 class="card-title">Destination Address</h5>
+            <hr>
+            <div>
+              <p><strong>Street:</strong>&nbsp;<%= @destination_address.street %></p>
+              <p><strong>External number:</strong>&nbsp;<%= @destination_address.ext_number %></p>
+              <p><strong>Appartment:</strong>&nbsp;<%= @destination_address.int_number %></p>
+              <p><strong>City:</strong>&nbsp;<%= @destination_address.city %></p>
+              <p><strong>Country:</strong>&nbsp;<%= @destination_address.country %></p>
+              <p><strong>ZIP code:</strong>&nbsp;<%= @destination_address.zip_code %></p>
+            </div>
+          </div>
+    </div>
+  </div>
+
+</div>
+<hr>
+<h3>Tracking History</h3>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Location</td>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><%= @parcel.created_at %></td>
+            <td>&nbsp;</td>
+            <td>Added into the system</td>
+        </tr>
+        <% @parcel.track_events.each do |event| %>
+            <tr>
+                <td><%= event.created_at %></td>
+                <td><%= event.location %></td>
+                <td><%= event.description %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<%= link_to 'Update status', update_parcel_status_parcel_path(@parcel.id), class: 'btn btn-primary' %>
+<span>Next: <%= @parcel.current_status[:new_event] %></span><br /><br />
+<%= link_to 'Back', :back, class: 'btn btn-primary' %>
