@@ -86,4 +86,4 @@
 
 <%= link_to 'Update status', update_parcel_status_parcel_path(@parcel.id), class: 'btn btn-primary' %>
 <span>Next: <%= @parcel.current_status[:new_event] %></span><br /><br />
-<%= link_to 'Back', :back, class: 'btn btn-primary' %>
+<%= link_to 'Back', root_path, class: 'btn btn-primary' %>
